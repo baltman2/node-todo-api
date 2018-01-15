@@ -30,33 +30,27 @@ function failureCb(err) {
   console.log(err);
 }
 
-const say = str => { console.log(str) };
+// clever functional javascript chaining.
+// [doSth, doSthElse, doSthFinal].reduce((p, f) => p.then(f), Promise.resolve());
+// Promise.resolve().then(doSth).then(doSthElse).then(doSthFinal);
+
+// const say = str => { console.log(str) };
 const wait = ms => new Promise(resolve => {
   setTimeout(resolve, ms);
 });
 
-// wait(1000).then(() => say('2 secs')).catch(e => { console.log(e) });
+wait().then(() => console.log(4));
+Promise.resolve().then(() => console.log(2)).then(() => console.log(3));
+console.log(1);
 
-// const arrFunc = args => args;
-// console.log(arrFunc('dsfsf'));
-
-var materials = [
-  'Hydrogen',
-  'Helium',
-  'Lithium',
-  'Beryllium'
-]; 
-var lengths = materials.map(material => material.length);
-// console.log(lengths);
-
-let myPromise = new Promise(function(resolve, reject){
-  setTimeout(function() {
-    resolve('success');
-  }, 2000);
-});
-myPromise.then(function(mesg){
-  console.log(mesg);
-});
+// let myPromise = new Promise(function(resolve, reject){
+//   setTimeout(function() {
+//     resolve('success');
+//   }, 2000);
+// });
+// myPromise.then(function(mesg){
+//   console.log(mesg);
+// });
 
 // Node doesn't support async/await.
 // void async function foo() {
